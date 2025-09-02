@@ -13,7 +13,7 @@ message EmbedRequest {
 
 message EmbedResponse {
     repeated Vector vectors = 1;
-    repeated int shape = 2;
+    repeated int64 shape = 2;
 }
 
 message Vector {
