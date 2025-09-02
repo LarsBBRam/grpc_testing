@@ -1,0 +1,21 @@
+syntax = "proto3";
+package npl_service;
+
+service EmbeddingService { 
+    rpc Embed(EmbedRequest) returns (EmbedResponse);
+}
+
+message EmbedRequest {
+    repeated string texts = 1;
+    string model = 2;
+    bool normalize = 3;
+}
+
+message EmbedResponse {
+    repeated Vector vectors = 1;
+    repeated int shape = 2;
+}
+
+message Vector {
+    repeated float dimension = 1;
+}
