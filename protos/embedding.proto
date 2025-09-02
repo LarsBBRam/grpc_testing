@@ -14,6 +14,8 @@ message EmbedRequest {
 message EmbedResponse {
     repeated Vector vectors = 1;
     repeated int64 shape = 2;
+    string dtype = 3;
+    bool fortran_order = 4;
 }
 
 message Vector {
