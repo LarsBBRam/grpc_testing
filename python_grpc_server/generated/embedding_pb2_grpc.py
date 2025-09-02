@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-import embedding_pb2 as embedding__pb2
+from . import embedding_pb2 as embedding__pb2
 
 GRPC_GENERATED_VERSION = '1.74.0'
 GRPC_VERSION = grpc.__version__
@@ -36,8 +36,8 @@ class EmbeddingServiceStub(object):
         """
         self.Embed = channel.unary_unary(
                 '/npl_service.EmbeddingService/Embed',
-                request_serializer=embedding__pb2.EmbedRequest.SerializeToString,
-                response_deserializer=embedding__pb2.EmbedResponse.FromString,
+                request_serializer=embedding__pb2.EmbedRequest.SerializeToString, # type: ignore
+                response_deserializer=embedding__pb2.EmbedResponse.FromString, # type: ignore
                 _registered_method=True)
 
 
@@ -55,8 +55,8 @@ def add_EmbeddingServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Embed': grpc.unary_unary_rpc_method_handler(
                     servicer.Embed,
-                    request_deserializer=embedding__pb2.EmbedRequest.FromString,
-                    response_serializer=embedding__pb2.EmbedResponse.SerializeToString,
+                    request_deserializer=embedding__pb2.EmbedRequest.FromString, # type: ignore
+                    response_serializer=embedding__pb2.EmbedResponse.SerializeToString, # type: ignore
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -80,12 +80,12 @@ class EmbeddingService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(
+        return grpc.experimental.unary_unary( # type: ignore
             request,
             target,
             '/npl_service.EmbeddingService/Embed',
-            embedding__pb2.EmbedRequest.SerializeToString,
-            embedding__pb2.EmbedResponse.FromString,
+            embedding__pb2.EmbedRequest.SerializeToString, # type: ignore
+            embedding__pb2.EmbedResponse.FromString, # type: ignore
             options,
             channel_credentials,
             insecure,

@@ -24,3 +24,14 @@ class EmbeddingService(grpc_server.EmbeddingServiceServicer):
         response.shape = result.shape
         return(response)
     
+async def serve_async(port: int = 500051):
+    server = aio.server()
+    grpc_server.add_EmbeddingServiceServicer_to_server(EmbeddingService(), server=server)
+    server.add_insecure_port(f"[::]:{port}")
+    await server.start()
+    print("server has started ...")
+    await server.wait_for_termination()
+
+if __name__ == "__main__":
+    print("Starting server")
+    asyncio.run(serve_async())
